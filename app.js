@@ -1,20 +1,19 @@
-const { request } = require('express');
 const express = require('express');
 const app = express();
-const morgan = require('morgan');
+const baseRouter = require('./routers/baserouter');
 
 // SETTING UP TEMPLATES AND STATIC FILES
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
+// SETTING UP LOGGING
+const morgan = require('morgan');
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-    res.render('index.ejs');
-});
+app.use(baseRouter);
 
 app.use((req, res, next) => {
-    res.status(404).render('404.ejs', {title: "Node TODO"});
+    res.status(404).render('404.ejs', {title: "Not found!"});
 })
 
 app.listen(3000, 'localhost', () => {
