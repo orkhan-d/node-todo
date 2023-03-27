@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.use((req, res, next) => {
-    res.status(404).render('404.ejs');
+    res.status(404).render('404.ejs', {title: "Node TODO"});
 })
 
 app.listen(3000, 'localhost', () => {
