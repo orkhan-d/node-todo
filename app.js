@@ -1,10 +1,13 @@
+const { request } = require('express');
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
 // SETTING UP TEMPLATES AND STATIC FILES
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
