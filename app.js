@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 
-app.use('static', '/static');
-
+// SETTING UP TEMPLATES AND STATIC FILES
+app.set('view engine', 'ejs');
+app.use(express.static('static'));
 
 app.get('/', (req, res) => {
-    res.contentType('text/plain').end('Hello, world!');
-    // res.end('Hello, world!');
+    res.render('index.ejs');
 });
 
 app.listen(3000, 'localhost', () => {
