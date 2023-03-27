@@ -1,11 +1,14 @@
 footer{
     background-color: rgb(13, 13, 13);
     color: rgb(204, 204, 204);
-    line-height: 200%;
+    line-height: 170%;
 }
 footer .container{
     padding: 2em 1em;
 }
 footer ul{
     list-style: none;
+}
+footer ul li{
+    font-size: 1.1em;
 }
