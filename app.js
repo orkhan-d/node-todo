@@ -2,6 +2,24 @@ const express = require('express');
 const app = express();
 const baseRouter = require('./routers/baserouter');
 
+const {Client} = require('pg');
+const client = new Client();
+client.connect();
+
+// creating tasks database
+client.on('connection', ()=>{
+    client.query(
+        `CREATE TABLE IF NOT EXISTS tasks(
+            id INTEGER PRIMARY KEY,
+            name VARCHAR(255),
+            description TEXT NULL
+        );`
+    )
+    .then((res) => {console.log("Created tasks table!")})
+    .catch((err) => {console.error(err)})
+});
+
+
 // SETTING UP TEMPLATES AND STATIC FILES
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
