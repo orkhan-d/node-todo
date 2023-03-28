@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+    <div class="container body">
+        <form action="/tasks" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required placeholder="Title">
+            <label for="descr">Description:</label>
+            <input type="text" id="descr" name="descr" required placeholder="Describe your task">
+            <input id="submit" type="submit" value="Create task">
+        </form>
+    </div>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

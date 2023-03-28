@@ -1,0 +1,41 @@
+form{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 2% 30% 0;
+}
+form label{
+    font-size: 1.7em;
+    font-weight: 600;
+}
+form input:not(:last-of-type){
+    margin: 1em 0;
+    height: 3em;
+    border: 2px solid black;
+    box-shadow: 0 0 3px black;
+    border-radius: 1em;
+    padding: 0 10px;
+    font-size: 1em;
+}
+form input:not(:last-of-type):focus,
+form input:not(:last-of-type):hover{
+    background-color: rgb(208, 208, 208);
+}
+
+form input:not(:last-of-type){
+    transition: all 0.2s;
+}
+
+form input:last-of-type{
+    text-transform: uppercase;
+    background-color: rgb(78, 78, 78);
+    color: rgb(255, 0, 0);
+    height: 2.5em;
+    font-size: 1.2em;
+    font-weight: 700;
+    width: 50%;
+    margin: 1em auto;
+    border-radius: 0.7em;
+    border: 0 solid rgb(217, 0, 0);
+    box-shadow: 0 0 3px rgb(135, 3, 3);
+    
+}

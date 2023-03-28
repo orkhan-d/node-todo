@@ -7,6 +7,7 @@ const sqlRouter = require('./routers/tasksrouter');
 // SETTING UP TEMPLATES AND STATIC FILES
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
+app.use(express.urlencoded({extended: true}));
 
 // SETTING UP LOGGING
 const morgan = require('morgan');

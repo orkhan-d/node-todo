@@ -3,27 +3,21 @@ const client = new Client();
 client.connect();
 
 // creating tasks database
-client.on('connection', ()=>{
-    client.query(
+client.query(
         `CREATE TABLE IF NOT EXISTS tasks(
-            id INTEGER PRIMARY KEY,
+            id SERIAL PRIMARY KEY,
             name VARCHAR(255),
             description TEXT NULL
         );`
     )
     .then((res) => {console.log("Created tasks table!")})
     .catch((err) => {console.error(err)})
-});
 
-function newTask(title, descr) {
-    let task;
-    client.query(`INSERT INTO tasks(name, description) VALUES(${title}, ${descr})`).then(
-        (res) => task = res.rows[0]
-    ).catch(
-        (err) => console.error(err)
-    );
+async function newTask(data) {
+    let {title, descr} = data;
+    await client.query(`INSERT INTO tasks(name, description) VALUES('${title}', '${descr}')`);
 
-    return task;
+    return await getTasks();
 }
 
 function getTaskById(id) {
