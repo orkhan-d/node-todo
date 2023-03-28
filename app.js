@@ -1,24 +1,8 @@
 const express = require('express');
 const app = express();
+
 const baseRouter = require('./routers/baserouter');
-
-const {Client} = require('pg');
-const client = new Client();
-client.connect();
-
-// creating tasks database
-client.on('connection', ()=>{
-    client.query(
-        `CREATE TABLE IF NOT EXISTS tasks(
-            id INTEGER PRIMARY KEY,
-            name VARCHAR(255),
-            description TEXT NULL
-        );`
-    )
-    .then((res) => {console.log("Created tasks table!")})
-    .catch((err) => {console.error(err)})
-});
-
+const sqlRouter = require('./routers/tasksrouter');
 
 // SETTING UP TEMPLATES AND STATIC FILES
 app.set('view engine', 'ejs');
@@ -29,6 +13,7 @@ const morgan = require('morgan');
 app.use(morgan('dev'));
 
 app.use(baseRouter);
+app.use(sqlRouter);
 
 app.use((req, res, next) => {
     res.status(404).render('404.ejs', {title: "Not found!"});

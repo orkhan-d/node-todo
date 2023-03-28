@@ -38,3 +38,10 @@ nav{
 .logo span.do{
     color: rgb(218, 218, 218);
 }
+
+.newtask{
+    background-color: rgb(78, 78, 78);
+    color: rgb(255, 0, 0);
+    padding: 6px 10px;
+    border-radius: 3px;
+}

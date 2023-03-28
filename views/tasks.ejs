@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+    <div class="container body">
+        <h1>Your Tasks</h1>
+        <div id="tasks">
+            <% if(tasks.length>0) { %>
+            <% tasks.forEach(task => { %>
+                    <div class="task task<%= task.id %>">
+                        <a class="task-title" href="/tasks/<%= task.id %>">
+                            <p ><%= task.name %></p>
+                        </a>
+                        <p class="task-descr"><%= task.description %></p>
+                    </div>
+            <% })} else { %>
+                <p>Nothing to show!</p>
+            <% } %>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

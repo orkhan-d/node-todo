@@ -1,0 +1,45 @@
+#tasks{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.task{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 3fr;
+    background-color: rgb(200, 200, 200);
+    max-height: 6em;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    overflow: hidden;
+    border: 2px solid rgb(158, 158, 158);
+    box-shadow: 2px 2px 2px rgb(157, 157, 157);
+}
+
+.task-title {
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 2em;
+    font-weight: 600;
+}
+.task-title p::after{
+    content: ">";
+    font-weight: normal;
+    margin: auto 0.5em;
+}
+
+.task-descr{
+    justify-self: start;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    align-self: center;
+
+    font-size: 1.3em;
+    font-weight: 600;
+    color: rgb(69, 69, 69);
+}
