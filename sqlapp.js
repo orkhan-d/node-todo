@@ -20,19 +20,16 @@ async function newTask(data) {
     return await getTasks();
 }
 
-function getTaskById(id) {
-    var task;
-    client.query(`SELECT * FROM tasks WHERE id=${id}`).then(
-        (res) => task = res.rows[0]
-    ).catch(
-        (err) => console.error(err)
-    );
+async function deleteTaskById(id){
+    await client.query(`DELETE from tasks WHERE id=${id}`);
+}
 
-    return task;
+async function getTaskById(id) {
+    return (await (client.query(`SELECT * FROM tasks WHERE id=${id}`))).rows[0];
 }
 
 async function getTasks() {
     return (await client.query(`SELECT * FROM tasks`)).rows;
 }
 
-module.exports = {client, newTask, getTaskById, getTasks};
+module.exports = {client, newTask, getTaskById, getTasks, deleteTaskById};

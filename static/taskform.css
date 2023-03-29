@@ -7,7 +7,7 @@ form label{
     font-size: 1.7em;
     font-weight: 600;
 }
-form input:not(:last-of-type){
+form #title, form #descr{
     margin: 1em 0;
     height: 3em;
     border: 2px solid black;
@@ -16,26 +16,34 @@ form input:not(:last-of-type){
     padding: 0 10px;
     font-size: 1em;
 }
-form input:not(:last-of-type):focus,
-form input:not(:last-of-type):hover{
+form #title:focus, form #descr:focus,
+form #title:hover, form #descr:hover{
     background-color: rgb(208, 208, 208);
 }
 
-form input:not(:last-of-type){
+form #title, form #descr{
     transition: all 0.2s;
 }
 
-form input:last-of-type{
+form .submit-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form .submit-form *{
     text-transform: uppercase;
     background-color: rgb(78, 78, 78);
     color: rgb(255, 0, 0);
     height: 2.5em;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 700;
-    width: 50%;
+    width: 30%;
     margin: 1em auto;
     border-radius: 0.7em;
     border: 0 solid rgb(217, 0, 0);
     box-shadow: 0 0 3px rgb(135, 3, 3);
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

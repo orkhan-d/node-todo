@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+    <div class="container body">
+        <h1>Your Tasks</h1>
+        <div id="tasks">
+            <form action="/tasks" method="post">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required placeholder="Title" value="<%= task.name %>">
+                <label for="descr">Description:</label>
+                <input type="text" id="descr" name="descr" required placeholder="Describe your task" value="<%= task.description %>">
+                <div class="submit-form">
+                    <input id="submit" type="submit" value="Update task">
+                    <a data-doc="<%= task.id %>" class="delete">Delete task</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+
+    <script>
+        const delbtn = document.querySelector('a.delete');
+        delbtn.addEventListener('click', (e) => {
+            const endpoint = `/tasks/${delbtn.dataset.doc}`;
+            console.log(endpoint);
+
+            fetch(
+                endpoint, {
+                    method: 'DELETE'
+            })
+            .then((response) => {return response.json()})
+            .then((data) => {window.location.href =  data.redirect});
+            // .catch((err) => console.log(err));
+        })
+    </script>
+</body>
+</html>

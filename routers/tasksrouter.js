@@ -1,5 +1,5 @@
 const express = require('express');
-const {client, newTask, getTaskById, getTasks} = require('../sqlapp');
+const {client, newTask, getTaskById, getTasks, deleteTaskById} = require('../sqlapp');
 
 const router = express.Router();
 
@@ -16,6 +16,18 @@ router.post('/tasks', async (req, res) => {
     await newTask(req.body);
 
     res.redirect('/tasks');
+});
+
+router.delete('/tasks/:id', async (req, res) => {
+    const id = req.params.id;
+    await deleteTaskById(id);
+
+    res.json({ redirect: '/tasks' });
+})
+
+router.get('/tasks/:id', async (req, res) => {
+    let task = await getTaskById(req.params.id);
+    res.render('task.ejs', {title: task.name, task: task});
 });
 
 module.exports = router;
