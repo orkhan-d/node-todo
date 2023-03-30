@@ -20,6 +20,11 @@ async function newTask(data) {
     return await getTasks();
 }
 
+async function updateTaskById(id, data){
+    let {title, descr} = data;
+    await client.query(`UPDATE tasks SET name='${title}', description='${descr}' WHERE id=${id}`);
+}
+
 async function deleteTaskById(id){
     await client.query(`DELETE from tasks WHERE id=${id}`);
 }
@@ -32,4 +37,4 @@ async function getTasks() {
     return (await client.query(`SELECT * FROM tasks`)).rows;
 }
 
-module.exports = {client, newTask, getTaskById, getTasks, deleteTaskById};
+module.exports = {client, newTask, getTaskById, getTasks, deleteTaskById, updateTaskById};

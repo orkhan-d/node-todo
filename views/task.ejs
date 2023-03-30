@@ -14,7 +14,7 @@
                 <label for="descr">Description:</label>
                 <input type="text" id="descr" name="descr" required placeholder="Describe your task" value="<%= task.description %>">
                 <div class="submit-form">
-                    <input id="submit" type="submit" value="Update task">
+                    <a data-doc="<%= task.id %>" class="update">Update task</a>
                     <a data-doc="<%= task.id %>" class="delete">Delete task</a>
                 </div>
             </form>
@@ -22,6 +22,7 @@
     </div>
     <%- include('partials/footer.ejs') %>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
         const delbtn = document.querySelector('a.delete');
         delbtn.addEventListener('click', (e) => {
@@ -33,8 +34,27 @@
                     method: 'DELETE'
             })
             .then((response) => {return response.json()})
-            .then((data) => {window.location.href =  data.redirect});
+            .then((data) => {window.location.href = data.redirect});
             // .catch((err) => console.log(err));
+        })
+
+        const updbtn = document.querySelector('a.update');
+        updbtn.addEventListener('click', (e) => {
+            console.log('clicked!');
+            const endpoint = `/tasks/${delbtn.dataset.doc}`;
+            console.log(endpoint);
+            const formData = $('form').serializeArray();
+            const title = formData[0].value;
+            const descr = formData[1].value;
+
+            fetch(
+                endpoint, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({title: title, descr: descr})
+            })
+            .then((response) => {return response.json()})
+            .then((data) => {window.location.href =  data.redirect});
         })
     </script>
 </body>

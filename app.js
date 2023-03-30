@@ -8,6 +8,7 @@ const sqlRouter = require('./routers/tasksrouter');
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 // SETTING UP LOGGING
 const morgan = require('morgan');
@@ -20,6 +21,6 @@ app.use((req, res, next) => {
     res.status(404).render('404.ejs', {title: "Not found!"});
 })
 
-app.listen(3000, 'localhost', () => {
+app.listen(3000, '127.0.0.1', () => {
     console.log('started on http://127.0.0.1:3000');
 })
